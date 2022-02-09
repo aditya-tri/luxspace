@@ -6,10 +6,10 @@ import BrowseRoom from "parts/HomePage/BrowseRoom";
 import JustArrived from "parts/HomePage/JustArrived";
 import SiteMap from "parts/SiteMap";
 
-function HomePage(props) {
+function HomePage() {
   return (
     <>
-      <Header />
+      <Header theme="white" position="absolute" />
       <Hero />
       <BrowseRoom />
       <JustArrived />
