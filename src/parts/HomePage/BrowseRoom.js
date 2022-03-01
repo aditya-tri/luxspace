@@ -1,11 +1,10 @@
+import Loading from "parts/HomePage/Loading";
 import fetch from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
 import { useEffect } from "react";
 
 function BrowseRoom() {
-  const { data, status, error, run, isLoading } = useAsync({
-    data: { username: "" },
-  });
+  const { data, status, error, run, isLoading } = useAsync();
 
   // fetch api menggunakan fetch custom yang telah di buat
   useEffect(() => {
@@ -14,7 +13,7 @@ function BrowseRoom() {
 
   console.log(data, status, error);
 
-  // Template untuk rasio dari category
+  // Template untuk raio dari category
   const ratioClassNames = {
     wrapper: {
       default: {
@@ -49,35 +48,37 @@ function BrowseRoom() {
         </div>
 
         <div className="grid grid-rows-2 grid-cols-9 gap-4">
-          {isLoading
-            ? "Loading..."
-            : data.data.map((item, index) => {
-                return (
-                  <div
-                    key={item.id}
-                    className={`relative card ${
-                      ratioClassNames?.wrapper.default?.[item.ratio.default]
-                    } ${ratioClassNames?.wrapper.md?.[item.ratio.md]}`}
-                    style={{ height: index === 0 ? 180 : "auto" }}
-                  >
-                    <div className="card-shadow rounded-xl">
-                      <img
-                        src={`/images/content/${item.imageUrl}`}
-                        alt={item.title}
-                        className="w-full h-full object-cover object-center overlay overflow-hidden rounded-xl"
-                      />
-                    </div>
-                    <div
-                      className={`overlay ${
-                        ratioClassNames?.meta?.[item.ratio.md]
-                      }`}
-                    >
-                      <h5 className="text-lg font-semibold">{item.title}</h5>
-                      <span className="">{item.products} items</span>
-                    </div>
+          {isLoading ? (
+            <Loading ratio={ratioClassNames} />
+          ) : (
+            data.data.map((item, index) => {
+              return (
+                <div
+                  key={item.id}
+                  className={`relative card ${
+                    ratioClassNames?.wrapper.default?.[item.ratio.default]
+                  } ${ratioClassNames?.wrapper.md?.[item.ratio.md]}`}
+                  style={{ height: index === 0 ? 180 : "auto" }}
+                >
+                  <div className="card-shadow rounded-xl">
+                    <img
+                      src={`/images/content/${item.imageUrl}`}
+                      alt={item.title}
+                      className="w-full h-full object-cover object-center overlay overflow-hidden rounded-xl"
+                    />
                   </div>
-                );
-              })}
+                  <div
+                    className={`overlay ${
+                      ratioClassNames?.meta?.[item.ratio.md]
+                    }`}
+                  >
+                    <h5 className="text-lg font-semibold">{item.title}</h5>
+                    <span className="">{item.products} items</span>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </section>
