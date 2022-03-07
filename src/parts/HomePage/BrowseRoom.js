@@ -1,17 +1,15 @@
-import Loading from "parts/HomePage/Loading";
+import { LoadingBrowseRoom } from "parts/HomePage/Loading";
 import fetch from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
 import { useEffect } from "react";
 
 function BrowseRoom() {
-  const { data, status, error, run, isLoading } = useAsync();
+  const { data, run, isLoading } = useAsync();
 
   // fetch api menggunakan fetch custom yang telah di buat
   useEffect(() => {
     run(fetch({ url: "/api/categories/?page=1&limit=4" }));
   }, [run]);
-
-  console.log(data, status, error);
 
   // Template untuk raio dari category
   const ratioClassNames = {
@@ -49,7 +47,7 @@ function BrowseRoom() {
 
         <div className="grid grid-rows-2 grid-cols-9 gap-4">
           {isLoading ? (
-            <Loading ratio={ratioClassNames} />
+            <LoadingBrowseRoom ratio={ratioClassNames} />
           ) : (
             data.data.map((item, index) => {
               return (

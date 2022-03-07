@@ -4,13 +4,12 @@ import fetch from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
 import { Link } from "react-router-dom";
 import Carousel from "components/Carousel";
+import { LoadingJustArrived } from "./Loading";
 
 function JustArrived() {
-  const { data, status, error, run, isLoading } = useAsync();
+  const { data, error, run, isLoading } = useAsync();
 
   const refContainer = useRef(null);
-
-  console.log(data, status);
 
   useEffect(() => {
     run(fetch({ url: "/api/products/?page=1&limit=10" }));
@@ -31,7 +30,9 @@ function JustArrived() {
         {/* <!-- <div className="overflow-hidden z-10"> --> */}
 
         {isLoading ? (
-          <div className="flex -mx-4 flex-row relative">Loading...</div>
+          <div className="flex -mx-4 flex-row relative">
+            <LoadingJustArrived />
+          </div>
         ) : error ? (
           JSON.stringify(error)
         ) : data.data.length === 0 ? (
