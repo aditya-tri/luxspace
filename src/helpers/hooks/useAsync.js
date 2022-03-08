@@ -1,4 +1,5 @@
 import { useCallback, useReducer, useRef } from "react";
+
 import useSafeDispatch from "./useSafeDispatch";
 
 const defaultState = {
@@ -29,10 +30,10 @@ export default function useAsync(initialState) {
       return promise.then(
         (data) => {
           safeSetState({ data, status: "resolved" });
+
           return data;
         },
         (error) => {
-          console.log(error.message);
           safeSetState({
             status: "rejected",
             error: JSON.parse(error.message),
