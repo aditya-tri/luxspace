@@ -12,6 +12,11 @@ import SiteMap from "parts/SiteMap";
 
 import useAsync from "helpers/hooks/useAsync";
 import fetch from "helpers/fetch";
+import {
+  LoadingBreadcrumb,
+  LoadingDetailsProduct,
+  LoadingSuggestion,
+} from "parts/Loading";
 
 function Details() {
   // hook untuk mengambil parameter yang ada di link
@@ -28,27 +33,25 @@ function Details() {
     <div className="mx-7">
       <Header theme="black" />
       {isLoading ? (
-        "Loading..."
+        <LoadingBreadcrumb />
       ) : (
-        <>
-          <Breadcrumb
-            list={[
-              { url: "/", name: "Home" },
-              {
-                url: `/categories/${data.category.id}`,
-                name: data.category.title,
-              },
-              {
-                url: `/categories/${data.category.id}/products/${data.id}`,
-                name: data.title,
-              },
-            ]}
-          />
-          <ProductDetails data={data} />
-        </>
+        <Breadcrumb
+          list={[
+            { url: "/", name: "Home" },
+            {
+              url: `/categories/${data.category.id}`,
+              name: data.category.title,
+            },
+            {
+              url: `/categories/${data.category.id}/products/${data.id}`,
+              name: data.title,
+            },
+          ]}
+        />
       )}
+      {isLoading ? <LoadingDetailsProduct /> : <ProductDetails data={data} />}
       {isLoading ? (
-        "Loading..."
+        <LoadingSuggestion />
       ) : (
         <Suggestion data={data?.relatedProducts || {}} />
       )}
