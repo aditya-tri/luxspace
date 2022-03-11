@@ -6,10 +6,11 @@ import Cart from "pages/Cart";
 import Congratulation from "pages/Congratulation";
 import Notfound from "pages/Notfound";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Provider from "helpers/hooks/useGlobalContext";
 
 function App() {
   return (
-    <div className="App">
+    <Provider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -20,7 +21,7 @@ function App() {
           <Route path="*" element={<Notfound />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 
