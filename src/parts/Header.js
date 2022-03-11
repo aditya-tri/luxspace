@@ -5,13 +5,8 @@ function Header({ theme, position }) {
     <header className={["w-full z-20 px-4", position].join(" ")}>
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
-          <div className="w-56 items-center flex">
-            <Link to="/">
-              <img
-                src="/images/content/logo.png"
-                alt="Luxspace | Fulfill your house with beautiful furniture"
-              />
-            </Link>
+          <div className="text-3xl text-pink-500 font-bold tracking-widest items-center">
+            <Link to="/">SOMENEW</Link>
           </div>
           <div className="w-full"></div>
           <div className="w-auto">
