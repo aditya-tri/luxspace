@@ -16,7 +16,6 @@ import fetch from "helpers/fetch";
 function Details() {
   // hook untuk mengambil parameter yang ada di link
   const { idp } = useParams();
-  console.log(idp);
 
   const { data, run, isLoading } = useAsync();
 
@@ -25,19 +24,34 @@ function Details() {
     run(fetch({ url: `/api/products/${idp}` }));
   }, [run, idp]);
 
-  console.log(data);
   return (
     <div className="mx-7">
       <Header theme="black" />
-      <Breadcrumb
-        list={[
-          { url: "/", name: "Home" },
-          { url: "/categories/1224234", name: "Office Room" },
-          { url: "/categories/1224234/products/4234", name: "Details" },
-        ]}
-      />
-      <ProductDetails />
-      <Suggestion />
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <>
+          <Breadcrumb
+            list={[
+              { url: "/", name: "Home" },
+              {
+                url: `/categories/${data.category.id}`,
+                name: data.category.title,
+              },
+              {
+                url: `/categories/${data.category.id}/products/${data.id}`,
+                name: data.title,
+              },
+            ]}
+          />
+          <ProductDetails data={data} />
+        </>
+      )}
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <Suggestion data={data?.relatedProducts || {}} />
+      )}
       <Clients />
       <SiteMap />
       <Footer />
