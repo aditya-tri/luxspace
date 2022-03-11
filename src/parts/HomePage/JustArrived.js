@@ -73,7 +73,7 @@ function JustArrived() {
                     to={`/categories/${item.idc}/products/${item.id}`}
                     href="details.html"
                     className="stretched-link"
-                  />
+                  ></Link>
                 </div>
               );
             })}
