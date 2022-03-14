@@ -1,4 +1,4 @@
-import { LoadingBrowseRoom } from "parts/HomePage/Loading";
+import { LoadingBrowseRoom } from "parts/Loading";
 import fetch from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
 import { useEffect } from "react";
