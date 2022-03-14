@@ -4,7 +4,7 @@ import fetch from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
 import { Link } from "react-router-dom";
 import Carousel from "components/Carousel";
-import { LoadingJustArrived } from "./Loading";
+import { LoadingJustArrived } from "../Loading";
 
 function JustArrived() {
   const { data, error, run, isLoading } = useAsync();
