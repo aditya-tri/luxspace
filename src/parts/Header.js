@@ -43,7 +43,9 @@ export default function Header({ theme, name }) {
     <header
       className={[
         "w-full z-40 px-4 top-0 bg-transparent",
-        show && name ? "absolute" : "sticky bg-white",
+        show && name
+          ? "fixed transition ease-in duration-500"
+          : "sticky bg-white",
       ].join(" ")}
     >
       <div className="container mx-auto py-5">
