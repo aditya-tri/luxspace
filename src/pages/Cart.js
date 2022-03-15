@@ -1,4 +1,5 @@
 import Breadcrumb from "components/Breadcrumb";
+import useScrollToTop from "helpers/hooks/useScrollToTop";
 import ShippingDetails from "parts/Cart/ShippingDetails";
 import ShoppingCart from "parts/Cart/ShoppingCart";
 
@@ -7,8 +8,9 @@ import Header from "parts/Header";
 import SiteMap from "parts/SiteMap";
 
 function Details() {
+  useScrollToTop();
   return (
-    <div className="mx-7">
+    <div className="">
       <Header theme="black" />
       <Breadcrumb
         list={[

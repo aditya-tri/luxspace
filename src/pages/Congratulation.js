@@ -5,8 +5,10 @@ import Footer from "parts/Footer";
 import Header from "parts/Header";
 import SiteMap from "parts/SiteMap";
 import { Link } from "react-router-dom";
+import useScrollToTop from "helpers/hooks/useScrollToTop";
 
 export default function Congratulation() {
+  useScrollToTop();
   return (
     <>
       <Header theme="black" />

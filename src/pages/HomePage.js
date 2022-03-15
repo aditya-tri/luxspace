@@ -8,13 +8,15 @@ import SiteMap from "parts/SiteMap";
 
 import useScrollAnchor from "helpers/hooks/useScrollAnchor";
 import useModalDOM from "helpers/hooks/useModalDOM";
+import useScrollToTop from "helpers/hooks/useScrollToTop";
 
 function HomePage() {
   useScrollAnchor();
   useModalDOM();
+  useScrollToTop();
   return (
     <>
-      <Header theme="white" position="absolute" />
+      <Header theme="black" position="sticky" />
       <Hero />
       <BrowseRoom />
       <JustArrived />

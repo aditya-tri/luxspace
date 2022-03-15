@@ -17,8 +17,10 @@ import {
   LoadingDetailsProduct,
   LoadingSuggestion,
 } from "parts/Loading";
+import useScrollToTop from "helpers/hooks/useScrollToTop";
 
 function Details() {
+  useScrollToTop();
   // hook untuk mengambil parameter yang ada di link
   const { idp } = useParams();
 
@@ -30,7 +32,7 @@ function Details() {
   }, [run, idp]);
 
   return (
-    <div className="mx-7">
+    <div className="">
       <Header theme="black" />
       {isLoading ? (
         <LoadingBreadcrumb />
