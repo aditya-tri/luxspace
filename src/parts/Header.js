@@ -25,7 +25,12 @@ function Header({ theme, position }) {
   }, [state.cart]);
 
   return (
-    <header className={["w-full z-20 px-4", position].join(" ")}>
+    <header
+      className={[
+        "w-full z-50 px-4 top-0 shadow-md sticky bg-gray-200",
+        position,
+      ].join(" ")}
+    >
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
           <div className="text-3xl text-pink-500 font-bold tracking-widest items-center">
@@ -118,7 +123,7 @@ function Header({ theme, position }) {
                     theme === "white"
                       ? "text-black md:text-white"
                       : "text-white md:text-black ",
-                    state.cart && Object.keys(state.cart).length > 0
+                    state.cart && Object.keys(state.cart).length > 0 // Cek isi dari state cart
                       ? "cart-filled"
                       : "",
                     isCartChange ? "animate-bounce" : "",
