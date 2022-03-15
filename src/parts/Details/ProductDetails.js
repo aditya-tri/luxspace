@@ -1,6 +1,7 @@
 import ReactHtmlParser from "react-html-parser";
 import { useState } from "react";
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
+import { CART_ADD_ITEM } from "helpers/constants/cartConstant";
 
 export default function ProductDetails({ data }) {
   const [slider, setSlider] = useState(() => data?.imgUrls?.[0] || "");
@@ -59,7 +60,7 @@ export default function ProductDetails({ data }) {
             className="transition-all duration-200 bg-pink-400 text-black focus:bg-black focus:text-pink-400 rounded-full px-8 py-3 mt-4 inline-flex"
             onClick={() =>
               dispatch({
-                type: "ADD_TO_CART",
+                type: CART_ADD_ITEM,
                 item: data,
               })
             }
