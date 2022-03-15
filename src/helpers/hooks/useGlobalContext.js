@@ -1,3 +1,8 @@
+import {
+  CART_ADD_ITEM,
+  CART_EMPTY,
+  CART_REMOVE_ITEM,
+} from "helpers/constants/cartConstant";
 import { createContext, useContext, useReducer } from "react";
 
 const Context = createContext();
@@ -17,7 +22,7 @@ export function useGlobalContext() {
 
 function Reducer(state, action) {
   switch (action.type) {
-    case "ADD_TO_CART":
+    case CART_ADD_ITEM:
       return {
         ...state,
         cart: state.cart
@@ -26,6 +31,24 @@ function Reducer(state, action) {
               [action.item.id]: action.item,
             }
           : { [action.item.id]: action.item },
+      };
+
+    case CART_REMOVE_ITEM:
+      return {
+        ...state,
+        cart: Object.keys(state.cart)
+          .filter((key) => +key !== +action.id)
+          .reduce((acc, key) => {
+            const item = state.cart[key];
+            acc[item.id] = item;
+            return acc;
+          }, {}),
+      };
+
+    case CART_EMPTY:
+      return {
+        ...state,
+        cart: initialState.cart,
       };
 
     default: {
