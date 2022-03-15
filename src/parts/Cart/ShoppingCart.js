@@ -2,6 +2,7 @@ import { CART_REMOVE_ITEM } from "helpers/constants/cartConstant";
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 import React from "react";
 import { Link } from "react-router-dom";
+import "helpers/formating/currency";
 
 export default function ShoppingCart() {
   // Destructur isi dari global context
@@ -71,13 +72,15 @@ export default function ShoppingCart() {
                     {item.category.title}
                   </span>
                   <h6 className="font-semibold text-base md:text-lg block md:hidden">
-                    Rp. {item.price}
+                    {item.price.currency()}
                   </h6>
                 </div>
               </div>
               <div className="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
                 <div className="">
-                  <h6 className="font-semibold text-lg">Rp. {item.price}</h6>
+                  <h6 className="font-semibold text-lg">
+                    {item.price.currency()}
+                  </h6>
                 </div>
               </div>
               <div className="px-4 w-2/12">

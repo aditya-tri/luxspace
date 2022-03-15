@@ -2,6 +2,7 @@ import ReactHtmlParser from "react-html-parser";
 import { useState } from "react";
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 import { CART_ADD_ITEM } from "helpers/constants/cartConstant";
+import "helpers/formating/currency";
 
 export default function ProductDetails({ data }) {
   const [slider, setSlider] = useState(() => data?.imgUrls?.[0] || "");
@@ -53,7 +54,7 @@ export default function ProductDetails({ data }) {
         </div>
         <div className="flex-1 px-4 md:p-6">
           <h2 className="text-5xl font-semibold">{data?.title}</h2>
-          <p className="text-xl">Rp. {data?.price}</p>
+          <p className="text-xl">{data?.price.currency()}</p>
 
           <button
             href="cart.html"

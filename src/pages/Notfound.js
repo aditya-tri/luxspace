@@ -3,17 +3,16 @@ import Header from "parts/Header";
 import ErrorMessage from "parts/ErrorMessage";
 import SiteMap from "parts/SiteMap";
 import Footer from "parts/Footer";
-import useScrollToTop from "helpers/hooks/useScrollToTop";
+import Document from "parts/Document";
 
 export default function Notfound() {
-  useScrollToTop();
   return (
-    <>
+    <Document>
       <Header />
       <ErrorMessage />
 
       <SiteMap />
       <Footer />
-    </>
+    </Document>
   );
 }

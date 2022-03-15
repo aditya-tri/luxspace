@@ -17,14 +17,14 @@ import {
   LoadingDetailsProduct,
   LoadingSuggestion,
 } from "parts/Loading";
-import useScrollToTop from "helpers/hooks/useScrollToTop";
+import Document from "parts/Document";
+import ErrorMessage from "parts/ErrorMessage";
 
 function Details() {
-  useScrollToTop();
   // hook untuk mengambil parameter yang ada di link
   const { idp } = useParams();
 
-  const { data, run, isLoading } = useAsync();
+  const { data, run, isLoading, isError } = useAsync();
 
   // fetch api menggunakan fetch custom yang telah di buat
   useEffect(() => {
@@ -32,35 +32,47 @@ function Details() {
   }, [run, idp]);
 
   return (
-    <div className="">
+    <Document>
       <Header theme="black" />
-      {isLoading ? (
-        <LoadingBreadcrumb />
+
+      {isError ? (
+        <ErrorMessage />
       ) : (
-        <Breadcrumb
-          list={[
-            { url: "/", name: "Home" },
-            {
-              url: `/categories/${data.category.id}`,
-              name: data.category.title,
-            },
-            {
-              url: `/categories/${data.category.id}/products/${data.id}`,
-              name: data.title,
-            },
-          ]}
-        />
+        <>
+          {isLoading ? (
+            <LoadingBreadcrumb />
+          ) : (
+            <Breadcrumb
+              list={[
+                { url: "/", name: "Home" },
+                {
+                  url: `/categories/${data.category.id}`,
+                  name: data.category.title,
+                },
+                {
+                  url: `/categories/${data.category.id}/products/${data.id}`,
+                  name: data.title,
+                },
+              ]}
+            />
+          )}
+          {isLoading ? (
+            <LoadingDetailsProduct />
+          ) : (
+            <ProductDetails data={data} />
+          )}
+          {isLoading ? (
+            <LoadingSuggestion />
+          ) : (
+            <Suggestion data={data?.relatedProducts || {}} />
+          )}
+        </>
       )}
-      {isLoading ? <LoadingDetailsProduct /> : <ProductDetails data={data} />}
-      {isLoading ? (
-        <LoadingSuggestion />
-      ) : (
-        <Suggestion data={data?.relatedProducts || {}} />
-      )}
+
       <Clients />
       <SiteMap />
       <Footer />
-    </div>
+    </Document>
   );
 }
 

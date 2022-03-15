@@ -5,6 +5,7 @@ import useAsync from "helpers/hooks/useAsync";
 import { Link } from "react-router-dom";
 import Carousel from "components/Carousel";
 import { LoadingJustArrived } from "../Loading";
+import "helpers/formating/currency";
 
 function JustArrived() {
   const { data, error, run, isLoading } = useAsync();
@@ -68,7 +69,7 @@ function JustArrived() {
                     />
                   </div>
                   <h5 className="text-lg font-semibold mt-4">{item.title}</h5>
-                  <span className="">Rp. {item.price}</span>
+                  <span className="">{item.price.currency()}</span>
                   <Link
                     to={`/categories/${item.idc}/products/${item.id}`}
                     href="details.html"

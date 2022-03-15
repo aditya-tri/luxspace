@@ -5,12 +5,11 @@ import Footer from "parts/Footer";
 import Header from "parts/Header";
 import SiteMap from "parts/SiteMap";
 import { Link } from "react-router-dom";
-import useScrollToTop from "helpers/hooks/useScrollToTop";
+import Documents from "parts/Document";
 
 export default function Congratulation() {
-  useScrollToTop();
   return (
-    <>
+    <Documents>
       <Header theme="black" />
       <Breadcrumb
         list={[
@@ -45,6 +44,6 @@ export default function Congratulation() {
       </section>
       <SiteMap />
       <Footer />
-    </>
+    </Documents>
   );
 }

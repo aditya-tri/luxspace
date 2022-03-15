@@ -20,8 +20,6 @@ export default function ShippingDetails() {
     payment: "",
   });
 
-  console.log(payload);
-
   const isSubmitDisabled =
     Object.keys(payload).filter((key) => {
       return payload[key] !== "";
@@ -43,16 +41,13 @@ export default function ShippingDetails() {
           cart: Object.keys(state.cart).map((key) => state.cart[key]),
         }),
       });
-      console.log(res);
       if (res) {
         navigate("/congratulation");
         dispatch({
           type: CART_EMPTY,
         });
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   return (
